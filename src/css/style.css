@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+
+.subsystem label>input {
+	width: 100px;
+	display: inline-block;
+}
+
+.subsystem {
+	width: max-content;
+}
+
+.subsystem label {
+	width: 100%;
+	text-align: right;
+	display: inline-block;
+}

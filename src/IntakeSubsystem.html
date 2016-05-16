@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="/js/jquery.js"></script>
+<script src="/networktables/networktables.js"></script>
+<script src="/js/dashboard.js"></script>
+<link rel="stylesheet" href="/css/style.css">
+<title>Robot Parameters - Arm Subsystem</title>
+</head>
+<body>
+    <a href="/index.html">Home</a>
+    <h3>Intake Subsystem</h3>
+
+    <div class="subsystem">
+        <label>In Speed: <input is="nt-input" data-nt-key="/Parameters/Intake Subsystem/in_speed" type="number" step=0.1 min=0 max=1 /></label>
+        <br>
+        <label>Out Speed: <input is="nt-input" data-nt-key="/Parameters/Intake Subsystem/out_speed" type="number" step=0.1 min=0 max=1 /></label>
+    </div>
+
+</body>
+</html>

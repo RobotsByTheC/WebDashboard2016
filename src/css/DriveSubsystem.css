@@ -1,0 +1,28 @@
+.debug-field {
+	display: none;
+}
+
+.graph {
+	width: 50%;
+	height: 500px;
+	display: table-cell;
+}
+
+.subsystem {
+	width: 100%;
+}
+
+.subsystem-fields {
+	float: left;
+	width: max-content;
+}
+
+.subsystem-graphs {
+	float: right;
+	width: 83%;
+	display: table;
+}
+
+.graph-row {
+	display: table-row;
+}
