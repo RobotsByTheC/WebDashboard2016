@@ -14,10 +14,6 @@ var RIGHT_VELOCITIES_KEY = PATH_FOLLOWER_TABLE + "right_velocities";
 var HEADINGS_KEY = PATH_FOLLOWER_TABLE + "headings";
 var DEBUG_VALUES_KEY = PATH_FOLLOWER_TABLE + "debug_values";
 
-var timeAxis = {
-    title : "Time (s)"
-};
-
 // Position layout
 var positionLayout = {
     xaxis : timeAxis,
@@ -77,13 +73,6 @@ var headingLayout = {
     }
 };
 
-var traceTemplate = {
-    mode : 'lines',
-    type : 'scattergl',
-    x : [ 0 ],
-    y : [ 0 ]
-};
-
 var pathFollowerGraphs = [];
 
 var lastTime = 0;
@@ -102,37 +91,6 @@ NetworkTables.addKeyListener(DEBUG_VALUES_KEY, function(key, value, isNew) {
     }
     lastTime = time;
 });
-
-function setupPIDGraph(element, key, layout) {
-    layout = $.extend(true, {}, layout);
-    layout.xaxis.range = [ 0, 0 ]
-    var setpointTrace = {
-        name : "Setpoint"
-    }
-    var inputTrace = {
-        name : "Input"
-    }
-    $.extend(true, setpointTrace, traceTemplate);
-    $.extend(true, inputTrace, traceTemplate);
-    element.update = function() {
-    }
-    NetworkTables.addKeyListener(key, function(key, value, isNew) {
-        inputTrace.x.push(value[0]);
-        setpointTrace.x.push(value[0]);
-
-        setpointTrace.y.push(value[1]);
-        inputTrace.y.push(value[2]);
-
-        layout.xaxis.range[0] = value[0] - 10;
-        layout.xaxis.range[1] = value[0];
-
-        element.update();
-    });
-    Plotly.newPlot(element, [ setpointTrace, inputTrace ], layout);
-    element.update = function() {
-        Plotly.redraw(element);
-    }
-}
 
 var packer = new JSPack();
 
