@@ -6,7 +6,6 @@
 <script src="/networktables/networktables.js"></script>
 <script src="/js/plotly-latest.min.js"></script>
 <script src="/js/dashboard.js"></script>
-<script src="/js/ShooterSubsystem.js"></script>
 <link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="/css/ShooterSubsystem.css">
 <title>Robot Parameters - Shooter Subsystem</title>
@@ -37,8 +36,10 @@
             </div>
             <div class="subsystem-graphs">
                 <div class="graph-row">
-                    <div id="left-velocity-graph" class="graph"></div>
-                    <div id="right-velocity-graph" class="graph"></div>
+                    <nt-pid-graph title="Left Velocity" data-nt-key="/Parameters/Set Shooter Speed/left_velocity" data-y-label="Velocity (RPM)"
+                        id="left-velocity-graph" class="graph"></nt-pid-graph>
+                    <nt-pid-graph title="Right Velocity" data-nt-key="/Parameters/Set Shooter Speed/right_velocity" data-y-label="Velocity (RPM)"
+                        id="right-velocity-graph" class="graph"></nt-pid-graph>
                 </div>
             </div>
         </fieldset>

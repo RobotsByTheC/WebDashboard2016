@@ -1,5 +1,11 @@
+// Custom HTML attribute name for specifying network table key
 var NT_KEY_ATTR = "data-nt-key";
 
+// ==============
+// Boolean button
+// ==============
+
+// Prototype for button that toggles a boolean
 var NTButtonProto = Object.create(HTMLButtonElement.prototype);
 NTButtonProto.createdCallback = function() {
     var elem = this;
@@ -10,10 +16,16 @@ NTButtonProto.createdCallback = function() {
     });
 };
 
+// Register element using experimental custom element registry (won't work in
+// old browsers)
 document.registerElement('nt-button', {
     prototype : NTButtonProto,
     extends : 'button'
 });
+
+// ===================================================================
+// Input field - text box for number and string, check box for boolean
+// ===================================================================
 
 var NTInputProto = Object.create(HTMLInputElement.prototype);
 NTInputProto.createdCallback = function() {
@@ -58,6 +70,10 @@ document.registerElement('nt-input', {
     extends : 'input'
 });
 
+// ====================
+// PID controller graph
+// ====================
+
 var timeAxis = {
     title : "Time (s)"
 };
@@ -65,10 +81,33 @@ var timeAxis = {
 var traceTemplate = {
     mode : 'lines',
     type : 'scattergl',
+    // Must have some data or it won't initially render
     x : [ 0 ],
     y : [ 0 ]
 };
 
+//Prototype for button that toggles a boolean
+var NTPIDGraphProto = Object.create(HTMLElement.prototype);
+NTPIDGraphProto.createdCallback = function() {
+    var element = this;
+    var key = element.getAttribute(NT_KEY_ATTR);
+    var title = element.getAttribute("title") || key;
+    var yLabel = element.getAttribute("data-y-label") || "Units";
+    var layout = {
+            xaxis : timeAxis,
+            yaxis : {
+                title : yLabel
+            },
+            title : title
+        };
+    setupPIDGraph(element, key, layout);
+};
+
+document.registerElement('nt-pid-graph', {
+    prototype : NTPIDGraphProto,
+});
+
+// Set up a graph for a PID controller on the specified element
 function setupPIDGraph(element, key, layout) {
     layout = $.extend(true, {}, layout);
     layout.xaxis.range = [ 0, 0 ]

@@ -67,8 +67,10 @@
             </div>
             <div class="subsystem-graphs">
                 <div class='graph-row'>
-                    <div class="graph" id="left-wheel-pid-graph"></div>
-                    <div class="graph" id="right-wheel-pid-graph"></div>
+                    <nt-pid-graph title="Left Velocity" data-nt-key="/Parameters/left_wheel_pid_debug" data-y-label="Velocity (m/s)"
+                        id="left-wheel-pid-graph" class="graph"></nt-pid-graph>
+                    <nt-pid-graph title="Right Velocity" data-nt-key="/Parameters/right_wheel_pid_debug" data-y-label="Velocity (m/s)"
+                        id="right-wheel-pid-graph" class="graph"></nt-pid-graph>
                 </div>
             </div>
         </fieldset>

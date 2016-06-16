@@ -3,9 +3,6 @@ var ARCADE_DRIVE_ALGORITHM_TABLE = "/Parameters/Arcade Drive Algorithm/";
 
 var HEADING_PID_KEY = ARCADE_DRIVE_ALGORITHM_TABLE + "debug_pid";
 
-var LEFT_WHEEL_PID_KEY = "/Parameters/left_wheel_pid_debug";
-var RIGHT_WHEEL_PID_KEY = "/Parameters/right_wheel_pid_debug";
-
 var TIMES_KEY = PATH_FOLLOWER_TABLE + "times";
 var LEFT_POSITIONS_KEY = PATH_FOLLOWER_TABLE + "left_positions";
 var RIGHT_POSITIONS_KEY = PATH_FOLLOWER_TABLE + "right_positions";
@@ -45,22 +42,6 @@ var rightVelocityLayout = {
     title : "Right Velocity"
 };
 $.extend(rightVelocityLayout, velocityLayout);
-
-// Acceleration
-var accelerationLayout = {
-    xaxis : timeAxis,
-    yaxis : {
-        title : "Acceleration (m/s^2)"
-    }
-};
-var leftAccelerationLayout = {
-    title : "Left Accleration"
-};
-$.extend(leftAccelerationLayout, accelerationLayout);
-var rightAccelerationLayout = {
-    title : "Right Acceleration"
-};
-$.extend(rightAccelerationLayout, accelerationLayout);
 
 // Heading
 var headingLayout = {
@@ -150,12 +131,6 @@ window.onload = function() {
     // Heading PID
     var headingPIDGraph = $("#heading-pid-graph")[0];
     setupPIDGraph(headingPIDGraph, HEADING_PID_KEY, headingLayout);
-
-    // Wheel velocity PID
-    var leftWheelPIDGraph = $("#left-wheel-pid-graph")[0];
-    setupPIDGraph(leftWheelPIDGraph, LEFT_WHEEL_PID_KEY, leftVelocityLayout);
-    var rightWheelPIDGraph = $("#right-wheel-pid-graph")[0];
-    setupPIDGraph(rightWheelPIDGraph, RIGHT_WHEEL_PID_KEY, rightVelocityLayout);
 
     // Position
     var leftPositionGraph = $("#left-position-graph")[0];
